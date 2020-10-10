@@ -1,0 +1,8 @@
+{
+  "name": "PT4-Researchers-API",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/marcelog5/PT4-Researchers-API.git",
+  "author": "marcelog5 <marcelovictorg2@gmail.com>",
+  "license": "MIT"
+}
