@@ -5,11 +5,16 @@
   "repository": "https://github.com/marcelog5/PT4-Researchers-API.git",
   "author": "marcelog5 <marcelovictorg2@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "build": "tsc",
+    "dev:server": "ts-node-dev --transpileOnly --ignore-watch node_modules src/server.ts"
+  },
   "dependencies": {
     "express": "^4.17.1"
   },
   "devDependencies": {
     "@types/express": "^4.17.8",
+    "ts-node-dev": "^1.0.0-pre.63",
     "typescript": "^4.0.3"
   }
 }
