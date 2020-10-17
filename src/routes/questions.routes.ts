@@ -14,22 +14,18 @@ questionsRouter.get('/', async (request, response) => {
 });
 
 questionsRouter.post('/', async (request, response) => {
-  try {
-    const { question, inverted, trait, factor } = request.body;
+  const { question, inverted, trait, factor } = request.body;
 
-    const createQuestion = new CreateQuestionService();
+  const createQuestion = new CreateQuestionService();
 
-    const questionInfor = await createQuestion.execute({
-      question,
-      inverted,
-      trait,
-      factor,
-    });
+  const questionInfor = await createQuestion.execute({
+    question,
+    inverted,
+    trait,
+    factor,
+  });
 
-    return response.json(questionInfor);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.json(questionInfor);
 });
 
 export default questionsRouter;
