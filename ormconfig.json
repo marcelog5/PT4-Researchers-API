@@ -4,5 +4,11 @@
   "port": 5432,
   "username": "postgres",
   "password": "docker",
-  "database": "PT4-Researchers"
+  "database": "pt4_researchers",
+  "migrations": [
+    "./src/database/migrations/*.ts"
+  ],
+  "cli": {
+    "migrationsDir": "./src/database/migrations"
+  }
 }

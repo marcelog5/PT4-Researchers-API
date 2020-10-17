@@ -2,7 +2,7 @@
 version: "3"
 
 services:
-    project-vacation:
+    pt4-researches:
         build: .
         command: yarn dev:server
         ports:
