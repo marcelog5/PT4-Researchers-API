@@ -1,4 +1,9 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
 export default class CreateQuestions1602936614457
   implements MigrationInterface {
@@ -9,7 +14,7 @@ export default class CreateQuestions1602936614457
         columns: [
           {
             name: 'id',
-            type: 'varchar',
+            type: 'uuid',
             isPrimary: true,
             generationStrategy: 'uuid',
             default: 'uuid_generate_v4()',
@@ -32,6 +37,11 @@ export default class CreateQuestions1602936614457
           {
             name: 'factor',
             type: 'varchar',
+            isNullable: false,
+          },
+          {
+            name: 'inventory_id',
+            type: 'uuid',
             isNullable: false,
           },
         ],
