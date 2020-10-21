@@ -1,11 +1,15 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export default class CreateQuestions1602936614457
-  implements MigrationInterface {
+export default class CreateForms1603191686746 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'questions',
+        name: 'forms',
         columns: [
           {
             name: 'id',
@@ -15,22 +19,17 @@ export default class CreateQuestions1602936614457
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'question',
+            name: 'name',
             type: 'varchar',
             isNullable: false,
           },
           {
-            name: 'inverted',
-            type: 'boolean',
-            isNullable: false,
-          },
-          {
-            name: 'trait',
+            name: 'term',
             type: 'varchar',
             isNullable: false,
           },
           {
-            name: 'factor',
+            name: 'link',
             type: 'varchar',
             isNullable: false,
           },
@@ -42,9 +41,23 @@ export default class CreateQuestions1602936614457
         ],
       }),
     );
+
+    await queryRunner.createForeignKey(
+      'forms',
+      new TableForeignKey({
+        name: 'FormsInventory',
+        columnNames: ['inventory_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'inventories',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
+      }),
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('questions');
+    await queryRunner.dropForeignKey('forms', 'FormsInventory');
+
+    await queryRunner.dropTable('forms');
   }
 }
