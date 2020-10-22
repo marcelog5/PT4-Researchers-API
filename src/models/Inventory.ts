@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('inventories')
-class Question {
+class Inventory {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -12,4 +12,4 @@ class Question {
   numberOfQuestions: number;
 }
 
-export default Question;
+export default Inventory;

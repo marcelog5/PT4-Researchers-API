@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { getRepository } from 'typeorm';
 
 import Question from '../models/Question';
@@ -7,6 +8,7 @@ interface Request {
   inverted: boolean;
   trait: string;
   factor: string;
+  inventory_id: string;
 }
 
 class CreateQuestionService {
@@ -15,19 +17,21 @@ class CreateQuestionService {
     inverted,
     trait,
     factor,
+    inventory_id,
   }: Request): Promise<Question> {
     const questionsRepository = getRepository(Question);
 
-    const questionInfor = questionsRepository.create({
+    const questions = questionsRepository.create({
       question,
       inverted,
       trait,
       factor,
+      inventory_id,
     });
 
-    await questionsRepository.save(questionInfor);
+    await questionsRepository.save(questions);
 
-    return questionInfor;
+    return questions;
   }
 }
 

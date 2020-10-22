@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import { Router } from 'express';
 import { getRepository } from 'typeorm';
 
@@ -14,18 +15,19 @@ questionsRouter.get('/', async (request, response) => {
 });
 
 questionsRouter.post('/', async (request, response) => {
-  const { question, inverted, trait, factor } = request.body;
+  const { question, inverted, trait, factor, inventory_id } = request.body;
 
   const createQuestion = new CreateQuestionService();
 
-  const questionInfor = await createQuestion.execute({
+  const questions = await createQuestion.execute({
     question,
     inverted,
     trait,
     factor,
+    inventory_id,
   });
 
-  return response.json(questionInfor);
+  return response.json(questions);
 });
 
 export default questionsRouter;
