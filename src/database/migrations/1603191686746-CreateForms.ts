@@ -34,6 +34,16 @@ export default class CreateForms1603191686746 implements MigrationInterface {
             isNullable: false,
           },
           {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
             name: 'inventory_id',
             type: 'uuid',
             isNullable: false,
