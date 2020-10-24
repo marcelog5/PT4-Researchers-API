@@ -14,6 +14,15 @@ formsRouter.get('/', async (request, response) => {
   return response.json(forms);
 });
 
+formsRouter.get('/:id', async (request, response) => {
+  const { id } = request.body;
+
+  const formsRepository = getRepository(Forms);
+  const form = await formsRepository.findOne(id);
+
+  return response.json(form);
+});
+
 formsRouter.post('/', async (request, response) => {
   const { name, link, term, inventory_id } = request.body;
 

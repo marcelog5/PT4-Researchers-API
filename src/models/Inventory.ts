@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import Question from './Question';
 
 @Entity('inventories')
 class Inventory {
@@ -10,6 +11,9 @@ class Inventory {
 
   @Column('int')
   numberOfQuestions: number;
+
+  @OneToMany(() => Question, question => question.inventory, { eager: true })
+  questions: Question[];
 }
 
 export default Inventory;

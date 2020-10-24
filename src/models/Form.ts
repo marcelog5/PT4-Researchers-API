@@ -34,7 +34,7 @@ class Form {
   @Column()
   inventory_id: string;
 
-  @ManyToOne(() => Inventory)
+  @ManyToOne(() => Inventory, { eager: true })
   @JoinColumn({ name: 'inventory_id' })
   inventory: Inventory;
 }
