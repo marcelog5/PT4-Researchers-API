@@ -32,7 +32,7 @@ export default class CreateQuestions1602936614457
           {
             name: 'factor',
             type: 'varchar',
-            isNullable: false,
+            isNullable: true,
           },
           {
             name: 'inventory_id',
