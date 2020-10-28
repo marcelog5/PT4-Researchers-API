@@ -15,7 +15,14 @@ questionsRouter.get('/', async (request, response) => {
 });
 
 questionsRouter.post('/', async (request, response) => {
-  const { question, inverted, trait, factor, inventory_id } = request.body;
+  const {
+    question,
+    inverted,
+    trait,
+    factor,
+    questionNumber,
+    inventory_id,
+  } = request.body;
 
   const createQuestion = new CreateQuestionService();
 
@@ -24,6 +31,7 @@ questionsRouter.post('/', async (request, response) => {
     inverted,
     trait,
     factor,
+    questionNumber,
     inventory_id,
   });
 

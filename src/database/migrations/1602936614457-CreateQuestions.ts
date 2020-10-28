@@ -35,6 +35,11 @@ export default class CreateQuestions1602936614457
             isNullable: true,
           },
           {
+            name: 'questionNumber',
+            type: 'int',
+            isNullable: false,
+          },
+          {
             name: 'inventory_id',
             type: 'uuid',
             isNullable: false,

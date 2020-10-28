@@ -26,6 +26,9 @@ class Question {
   @Column('varchar')
   factor: string;
 
+  @Column('int')
+  questionNumber: number;
+
   @Column()
   inventory_id: string;
 

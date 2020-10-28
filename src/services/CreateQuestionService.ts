@@ -8,6 +8,7 @@ interface Request {
   inverted: boolean;
   trait: string;
   factor: string;
+  questionNumber: number;
   inventory_id: string;
 }
 
@@ -17,6 +18,7 @@ class CreateQuestionService {
     inverted,
     trait,
     factor,
+    questionNumber,
     inventory_id,
   }: Request): Promise<Question> {
     const questionsRepository = getRepository(Question);
@@ -26,6 +28,7 @@ class CreateQuestionService {
       inverted,
       trait,
       factor,
+      questionNumber,
       inventory_id,
     });
 

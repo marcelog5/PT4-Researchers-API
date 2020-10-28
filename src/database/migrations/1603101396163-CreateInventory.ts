@@ -24,6 +24,11 @@ export default class CreateInventory1603101396163
             type: 'int',
             isNullable: false,
           },
+          {
+            name: 'inventoryName',
+            type: 'varchar',
+            isNullable: false,
+          },
         ],
       }),
     );

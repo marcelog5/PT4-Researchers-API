@@ -12,6 +12,9 @@ class Inventory {
   @Column('int')
   numberOfQuestions: number;
 
+  @Column('varchar')
+  inventoryName: string;
+
   @OneToMany(() => Question, question => question.inventory, { eager: true })
   questions: Question[];
 }
