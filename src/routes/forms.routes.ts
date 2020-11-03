@@ -14,13 +14,22 @@ formsRouter.get('/', async (request, response) => {
   return response.json(forms);
 });
 
-formsRouter.get('/:id', async (request, response) => {
-  const { id } = request.body;
+formsRouter.get('/:formId', async (request, response) => {
+  const { formId } = request.params;
 
   const formsRepository = getRepository(Forms);
-  const form = await formsRepository.findOne(id);
 
-  return response.json(form);
+  try {
+    const form = await formsRepository.findOneOrFail({
+      where: {
+        id: formId,
+      },
+    });
+
+    return response.json(form);
+  } catch (e) {
+    return response.json({ message: 'Form not found.' });
+  }
 });
 
 formsRouter.post('/', async (request, response) => {

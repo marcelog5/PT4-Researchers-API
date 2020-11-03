@@ -8,6 +8,7 @@ const routes = Router();
 
 routes.use('/questions', questionsRouter);
 routes.use('/forms', formsRouter);
+routes.use('/forms/:formId', formsRouter);
 routes.use('/inventories', inventoriesRouter);
 routes.use('/respondents', respondentsRouter);
 
