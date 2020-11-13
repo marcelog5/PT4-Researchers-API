@@ -10,6 +10,7 @@ import {
 } from 'typeorm';
 
 import Inventory from './Inventory';
+import User from './User';
 
 @Entity('forms')
 class Form {
@@ -34,9 +35,16 @@ class Form {
   @Column()
   inventory_id: string;
 
+  @Column()
+  user_id: string;
+
   @ManyToOne(() => Inventory, { eager: true })
   @JoinColumn({ name: 'inventory_id' })
   inventory: Inventory;
+
+  @ManyToOne(() => User, { eager: true })
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 }
 
 export default Form;

@@ -31,8 +31,8 @@ export default class CreateForeignKeyToForm1605092090954
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropColumn('forms', 'user_id');
-
     await queryRunner.dropForeignKey('forms', 'FormUser');
+
+    await queryRunner.dropColumn('forms', 'user_id');
   }
 }

@@ -40,18 +40,18 @@ export default class CreateUsers1605006504008 implements MigrationInterface {
             isNullable: false,
           },
           {
-            name: 'Institution',
+            name: 'institution',
             type: 'varchar',
             isNullable: true,
           },
           {
-            name: 'ORCID',
+            name: 'orcid',
             type: 'varchar',
             isNullable: true,
             isUnique: true,
           },
           {
-            name: 'Lattes',
+            name: 'lattes',
             type: 'varchar',
             isNullable: true,
             isUnique: true,
@@ -72,6 +72,6 @@ export default class CreateUsers1605006504008 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('respondents');
+    await queryRunner.dropTable('users');
   }
 }
