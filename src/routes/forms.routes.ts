@@ -15,11 +15,11 @@ formsRouter.get('/', async (request, response) => {
 });
 
 formsRouter.get('/:formId', async (request, response) => {
-  const { formId } = request.params;
-
-  const formsRepository = getRepository(Forms);
-
   try {
+    const { formId } = request.params;
+
+    const formsRepository = getRepository(Forms);
+
     const form = await formsRepository.findOneOrFail({
       where: {
         id: formId,
@@ -33,18 +33,23 @@ formsRouter.get('/:formId', async (request, response) => {
 });
 
 formsRouter.post('/', async (request, response) => {
-  const { name, link, term, inventory_id } = request.body;
+  try {
+    const { name, link, term, inventory_id, user_id } = request.body;
 
-  const createForm = new CreateFormService();
+    const createForm = new CreateFormService();
 
-  const forms = await createForm.execute({
-    name,
-    link,
-    term,
-    inventory_id,
-  });
+    const forms = await createForm.execute({
+      name,
+      link,
+      term,
+      inventory_id,
+      user_id,
+    });
 
-  return response.json(forms);
+    return response.json(forms);
+  } catch (err) {
+    return response.status(400).json({ error: err.message });
+  }
 });
 
 export default formsRouter;
