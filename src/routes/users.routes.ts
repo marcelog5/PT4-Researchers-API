@@ -1,19 +1,9 @@
 /* eslint-disable camelcase */
 import { Router } from 'express';
 
-import { getRepository } from 'typeorm';
-
-import Users from '../models/User';
 import CreateUserService from '../services/CreateUserService';
 
 const usersRouter = Router();
-
-usersRouter.get('/', async (request, response) => {
-  const usersRepository = getRepository(Users);
-  const users = await usersRepository.find();
-
-  return response.json(users);
-});
 
 usersRouter.post('/', async (request, response) => {
   try {
@@ -41,9 +31,9 @@ usersRouter.post('/', async (request, response) => {
       lattes,
     });
 
-    user.password = '';
-
-    return response.json(user);
+    return response.json({
+      id: user.id,
+    });
   } catch (err) {
     return response.status(400).json({ error: err.message });
   }
