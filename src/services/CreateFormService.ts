@@ -8,6 +8,7 @@ interface Request {
   link: string;
   term: string;
   inventory_id: string;
+  user_id: string;
 }
 
 class CreateQuestionService {
@@ -16,6 +17,7 @@ class CreateQuestionService {
     link,
     term,
     inventory_id,
+    user_id,
   }: Request): Promise<Form> {
     const formsRepository = getRepository(Form);
 
@@ -24,6 +26,7 @@ class CreateQuestionService {
       link,
       term,
       inventory_id,
+      user_id,
     });
 
     await formsRepository.save(forms);
