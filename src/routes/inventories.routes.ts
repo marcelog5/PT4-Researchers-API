@@ -5,6 +5,8 @@ import { getRepository } from 'typeorm';
 import Inventories from '../models/Inventory';
 import CreateInventoryService from '../services/CreateInventoryService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const inventoriesRouter = Router();
 
 inventoriesRouter.get('/', async (request, response) => {
@@ -14,7 +16,7 @@ inventoriesRouter.get('/', async (request, response) => {
   return response.json(inventories);
 });
 
-inventoriesRouter.post('/', async (request, response) => {
+inventoriesRouter.post('/', ensureAuthenticated, async (request, response) => {
   const { author, numberOfQuestions, inventoryName } = request.body;
 
   const createInventory = new CreateInventoryService();

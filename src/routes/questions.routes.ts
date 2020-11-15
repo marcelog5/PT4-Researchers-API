@@ -5,6 +5,8 @@ import { getRepository } from 'typeorm';
 import Questions from '../models/Question';
 import CreateQuestionService from '../services/CreateQuestionService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const questionsRouter = Router();
 
 questionsRouter.get('/', async (request, response) => {
@@ -14,7 +16,7 @@ questionsRouter.get('/', async (request, response) => {
   return response.json(questions);
 });
 
-questionsRouter.post('/', async (request, response) => {
+questionsRouter.post('/', ensureAuthenticated, async (request, response) => {
   const {
     question,
     inverted,

@@ -9,7 +9,7 @@ import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
 const formsRouter = Router();
 
-formsRouter.get('/', async (request, response) => {
+formsRouter.get('/', ensureAuthenticated, async (request, response) => {
   const formsRepository = getRepository(Forms);
   const forms = await formsRepository.find();
 
