@@ -15,6 +15,7 @@ usersRouter.post('/', async (request, response) => {
     institution,
     orcid,
     lattes,
+    isAdmin,
   } = request.body;
 
   const createUser = new CreateUserService();
@@ -28,6 +29,7 @@ usersRouter.post('/', async (request, response) => {
     institution,
     orcid,
     lattes,
+    isAdmin,
   });
 
   return response.json({

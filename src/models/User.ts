@@ -38,6 +38,9 @@ class User {
   @Column('varchar')
   lattes: string;
 
+  @Column('boolean')
+  isAdmin: boolean;
+
   @CreateDateColumn()
   created_at: Date;
 
