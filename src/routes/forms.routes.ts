@@ -5,6 +5,8 @@ import { getRepository } from 'typeorm';
 import Forms from '../models/Form';
 import CreateFormService from '../services/CreateFormService';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 const formsRouter = Router();
 
 formsRouter.get('/', async (request, response) => {
@@ -32,7 +34,7 @@ formsRouter.get('/:formId', async (request, response) => {
   }
 });
 
-formsRouter.post('/', async (request, response) => {
+formsRouter.post('/', ensureAuthenticated, async (request, response) => {
   try {
     const { name, link, term, inventory_id, user_id } = request.body;
 

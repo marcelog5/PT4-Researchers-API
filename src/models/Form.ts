@@ -42,7 +42,7 @@ class Form {
   @JoinColumn({ name: 'inventory_id' })
   inventory: Inventory;
 
-  @ManyToOne(() => User, { eager: true })
+  @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user: User;
 }
