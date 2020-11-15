@@ -15,31 +15,27 @@ respondentsRouter.get('/', async (request, response) => {
 });
 
 respondentsRouter.post('/', async (request, response) => {
-  try {
-    const {
-      gender,
-      schooling,
-      age,
-      state,
-      questionsAnswer,
-      form_id,
-    } = request.body;
+  const {
+    gender,
+    schooling,
+    age,
+    state,
+    questionsAnswer,
+    form_id,
+  } = request.body;
 
-    const createRespondent = new CreateRespondentService();
+  const createRespondent = new CreateRespondentService();
 
-    const respondents = await createRespondent.execute({
-      gender,
-      schooling,
-      age,
-      state,
-      questionsAnswer,
-      form_id,
-    });
+  const respondents = await createRespondent.execute({
+    gender,
+    schooling,
+    age,
+    state,
+    questionsAnswer,
+    form_id,
+  });
 
-    return response.json(respondents);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.json(respondents);
 });
 
 export default respondentsRouter;

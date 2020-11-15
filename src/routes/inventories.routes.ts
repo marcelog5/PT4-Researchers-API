@@ -15,21 +15,17 @@ inventoriesRouter.get('/', async (request, response) => {
 });
 
 inventoriesRouter.post('/', async (request, response) => {
-  try {
-    const { author, numberOfQuestions, inventoryName } = request.body;
+  const { author, numberOfQuestions, inventoryName } = request.body;
 
-    const createInventory = new CreateInventoryService();
+  const createInventory = new CreateInventoryService();
 
-    const inventories = await createInventory.execute({
-      author,
-      numberOfQuestions,
-      inventoryName,
-    });
+  const inventories = await createInventory.execute({
+    author,
+    numberOfQuestions,
+    inventoryName,
+  });
 
-    return response.json(inventories);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.json(inventories);
 });
 
 export default inventoriesRouter;

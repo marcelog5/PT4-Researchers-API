@@ -15,31 +15,27 @@ questionsRouter.get('/', async (request, response) => {
 });
 
 questionsRouter.post('/', async (request, response) => {
-  try {
-    const {
-      question,
-      inverted,
-      trait,
-      factor,
-      questionNumber,
-      inventory_id,
-    } = request.body;
+  const {
+    question,
+    inverted,
+    trait,
+    factor,
+    questionNumber,
+    inventory_id,
+  } = request.body;
 
-    const createQuestion = new CreateQuestionService();
+  const createQuestion = new CreateQuestionService();
 
-    const questions = await createQuestion.execute({
-      question,
-      inverted,
-      trait,
-      factor,
-      questionNumber,
-      inventory_id,
-    });
+  const questions = await createQuestion.execute({
+    question,
+    inverted,
+    trait,
+    factor,
+    questionNumber,
+    inventory_id,
+  });
 
-    return response.json(questions);
-  } catch (err) {
-    return response.status(400).json({ error: err.message });
-  }
+  return response.json(questions);
 });
 
 export default questionsRouter;
