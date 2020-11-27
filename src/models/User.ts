@@ -38,6 +38,9 @@ class User {
   @Column('varchar')
   lattes: string;
 
+  @Column('varchar')
+  state: string;
+
   @Column('boolean')
   isAdmin: boolean;
 

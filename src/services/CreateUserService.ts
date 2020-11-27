@@ -14,6 +14,7 @@ interface Request {
   institution: string;
   orcid: string;
   lattes: string;
+  state: string;
   isAdmin: boolean;
 }
 
@@ -27,6 +28,7 @@ class CreateUserService {
     institution,
     orcid,
     lattes,
+    state,
     isAdmin,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
@@ -50,6 +52,7 @@ class CreateUserService {
       institution,
       orcid,
       lattes,
+      state,
       isAdmin,
     });
 
