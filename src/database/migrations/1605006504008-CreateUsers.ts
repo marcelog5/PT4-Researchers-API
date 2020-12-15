@@ -48,16 +48,19 @@ export default class CreateUsers1605006504008 implements MigrationInterface {
             name: 'orcid',
             type: 'varchar',
             isNullable: true,
-            isUnique: true,
           },
           {
             name: 'lattes',
             type: 'varchar',
             isNullable: true,
-            isUnique: true,
           },
           {
             name: 'state',
+            type: 'varchar',
+            isNullable: false,
+          },
+          {
+            name: 'schooling',
             type: 'varchar',
             isNullable: false,
           },

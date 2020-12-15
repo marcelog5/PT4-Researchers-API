@@ -15,6 +15,7 @@ interface Request {
   orcid: string;
   lattes: string;
   state: string;
+  schooling: string;
   isAdmin: boolean;
 }
 
@@ -29,12 +30,13 @@ class CreateUserService {
     orcid,
     lattes,
     state,
+    schooling,
     isAdmin,
   }: Request): Promise<User> {
     const usersRepository = getRepository(User);
 
     const checkUserExists = await usersRepository.findOne({
-      where: [{ email }, { lattes }, { orcid }],
+      where: [{ email }],
     });
 
     if (checkUserExists) {
@@ -53,6 +55,7 @@ class CreateUserService {
       orcid,
       lattes,
       state,
+      schooling,
       isAdmin,
     });
 

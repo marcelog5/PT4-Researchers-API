@@ -16,6 +16,7 @@ usersRouter.post('/', async (request, response) => {
     orcid,
     lattes,
     state,
+    schooling,
     isAdmin,
   } = request.body;
 
@@ -31,6 +32,7 @@ usersRouter.post('/', async (request, response) => {
     orcid,
     lattes,
     state,
+    schooling,
     isAdmin,
   });
 

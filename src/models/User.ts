@@ -41,6 +41,9 @@ class User {
   @Column('varchar')
   state: string;
 
+  @Column('varchar')
+  schooling: string;
+
   @Column('boolean')
   isAdmin: boolean;
 
