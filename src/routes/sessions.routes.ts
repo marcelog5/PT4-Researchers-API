@@ -24,6 +24,7 @@ sessionsRouter.post('/', async (request, response) => {
     orcid: user.orcid,
     lattes: user.lattes,
     state: user.state,
+    isAdmin: user.isAdmin,
     created_at: user.created_at,
     updated_at: user.updated_at,
   };
