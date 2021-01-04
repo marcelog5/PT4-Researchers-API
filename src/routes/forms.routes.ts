@@ -16,6 +16,28 @@ formsRouter.get('/', ensureAuthenticated, async (request, response) => {
   return response.json(forms);
 });
 
+formsRouter.get(
+  '/findByUser/:user_id',
+  ensureAuthenticated,
+  async (request, response) => {
+    try {
+      const { user_id } = request.params;
+
+      const formsRepository = getRepository(Forms);
+
+      const forms = await formsRepository.find({
+        where: {
+          user_id,
+        },
+      });
+
+      return response.json(forms);
+    } catch {
+      return response.json({ message: 'There is no forms.' });
+    }
+  },
+);
+
 formsRouter.get('/:formId', async (request, response) => {
   try {
     const { formId } = request.params;
