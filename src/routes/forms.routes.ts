@@ -17,17 +17,21 @@ formsRouter.get('/', ensureAuthenticated, async (request, response) => {
 });
 
 formsRouter.get('/:formId', async (request, response) => {
-  const { formId } = request.params;
+  try {
+    const { formId } = request.params;
 
-  const formsRepository = getRepository(Forms);
+    const formsRepository = getRepository(Forms);
 
-  const form = await formsRepository.findOneOrFail({
-    where: {
-      id: formId,
-    },
-  });
+    const form = await formsRepository.findOneOrFail({
+      where: {
+        id: formId,
+      },
+    });
 
-  return response.json(form);
+    return response.json(form);
+  } catch {
+    return response.json({ message: 'Form not found.' });
+  }
 });
 
 formsRouter.post('/', ensureAuthenticated, async (request, response) => {
