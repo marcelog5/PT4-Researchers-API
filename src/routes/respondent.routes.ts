@@ -2,17 +2,41 @@
 import { Router } from 'express';
 import { getRepository } from 'typeorm';
 
+import ensureAuthenticated from '../middlewares/ensureAuthenticated';
+
 import Respondent from '../models/Respondent';
 import CreateRespondentService from '../services/CreateRespondentService';
 
 const respondentsRouter = Router();
 
-respondentsRouter.get('/', async (request, response) => {
+respondentsRouter.get('/', ensureAuthenticated, async (request, response) => {
   const respondentsRepository = getRepository(Respondent);
   const respondents = await respondentsRepository.find();
 
   return response.json(respondents);
 });
+
+respondentsRouter.get(
+  '/:form_id',
+  ensureAuthenticated,
+  async (request, response) => {
+    try {
+      const { form_id } = request.params;
+
+      const respondentsRepository = getRepository(Respondent);
+
+      const respondents = await respondentsRepository.find({
+        where: {
+          form_id,
+        },
+      });
+
+      return response.json(respondents);
+    } catch {
+      return response.json({ message: 'There is no respondent.' });
+    }
+  },
+);
 
 respondentsRouter.post('/', async (request, response) => {
   const {
