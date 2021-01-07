@@ -72,4 +72,22 @@ formsRouter.post('/', ensureAuthenticated, async (request, response) => {
   return response.json(forms);
 });
 
+formsRouter.delete(
+  '/:formId',
+  ensureAuthenticated,
+  async (request, response) => {
+    try {
+      const { formId } = request.params;
+
+      const formsRepository = getRepository(Forms);
+
+      await formsRepository.delete({ id: formId });
+
+      return response.json({ message: 'The form was successfully deleted!' });
+    } catch {
+      return response.json({ message: 'The form was not deleted.' });
+    }
+  },
+);
+
 export default formsRouter;
