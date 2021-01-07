@@ -2,12 +2,11 @@ FROM node:alpine
 
 WORKDIR /usr/app
 
+COPY package*.json ./
+RUN npm install
+
 COPY . .
-
-RUN yarn
-
-RUN ["chmod", "777", "node_modules"]
 
 EXPOSE 3333
 
-CMD ["yarn", "dev:server"]
+CMD ["npm", "run", "dev:server"]

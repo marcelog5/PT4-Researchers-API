@@ -2,9 +2,9 @@
 version: "3"
 
 services:
-    pt4-researches:
+    app:
         build: .
-        command: yarn dev:server
+        command: npm run dev:server
         ports:
             - "3333:3333"
         volumes:
