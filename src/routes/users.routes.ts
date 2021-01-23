@@ -2,8 +2,43 @@
 import { Router } from 'express';
 
 import CreateUserService from '../services/CreateUserService';
+import UpdateUserDataService from '../services/UpdateUserDataService';
 
 const usersRouter = Router();
+
+usersRouter.put('/userdata', async (request, response) => {
+  const {
+    id,
+    name,
+    email,
+    gender,
+    age,
+    institution,
+    orcid,
+    lattes,
+    state,
+    schooling,
+  } = request.body;
+
+  const updateUser = new UpdateUserDataService();
+
+  const status = await updateUser.execute({
+    id,
+    name,
+    email,
+    gender,
+    age,
+    institution,
+    orcid,
+    lattes,
+    state,
+    schooling,
+  });
+
+  return response.json({
+    status,
+  });
+});
 
 usersRouter.post('/', async (request, response) => {
   const {
