@@ -46,6 +46,31 @@ export default class CreateRespondents1603488272738
             isArray: true,
           },
           {
+            name: 'extraversion',
+            type: 'int',
+            isNullable: false,
+          },
+          {
+            name: 'conscientiousness',
+            type: 'int',
+            isNullable: false,
+          },
+          {
+            name: 'agreeableness',
+            type: 'int',
+            isNullable: false,
+          },
+          {
+            name: 'openness',
+            type: 'int',
+            isNullable: false,
+          },
+          {
+            name: 'neuroticism',
+            type: 'int',
+            isNullable: false,
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',
