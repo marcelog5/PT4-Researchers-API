@@ -31,6 +31,21 @@ class Respondent {
   @Column('int', { array: true })
   questionsAnswer: number[];
 
+  @Column('int')
+  extraversion: number;
+
+  @Column('int')
+  conscientiousness: number;
+
+  @Column('int')
+  agreeableness: number;
+
+  @Column('int')
+  openness: number;
+
+  @Column('int')
+  neuroticism: number;
+
   @CreateDateColumn()
   created_at: Date;
 
