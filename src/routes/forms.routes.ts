@@ -4,6 +4,7 @@ import { getRepository } from 'typeorm';
 
 import Forms from '../models/Form';
 import CreateFormService from '../services/CreateFormService';
+import UpdateFormService from '../services/UpdateFormService';
 
 import ensureAuthenticated from '../middlewares/ensureAuthenticated';
 
@@ -55,6 +56,27 @@ formsRouter.get('/:formId', async (request, response) => {
     return response.json({ message: 'Form not found.' });
   }
 });
+
+formsRouter.put(
+  '/updateForm',
+  ensureAuthenticated,
+  async (request, response) => {
+    const { id, name, link, term } = request.body;
+
+    const updateForm = new UpdateFormService();
+
+    const status = await updateForm.execute({
+      id,
+      name,
+      link,
+      term,
+    });
+
+    return response.json({
+      status,
+    });
+  },
+);
 
 formsRouter.post('/', ensureAuthenticated, async (request, response) => {
   const { name, link, term, inventory_id, user_id } = request.body;
