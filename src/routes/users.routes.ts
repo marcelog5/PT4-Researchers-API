@@ -3,6 +3,7 @@ import { Router } from 'express';
 
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserDataService from '../services/UpdateUserDataService';
+import UpdateUserForgotPasswordService from '../services/UpdateUserForgotPasswordService';
 
 const usersRouter = Router();
 
@@ -33,6 +34,20 @@ usersRouter.put('/userdata', async (request, response) => {
     lattes,
     state,
     schooling,
+  });
+
+  return response.json({
+    status,
+  });
+});
+
+usersRouter.put('/sendpassword', async (request, response) => {
+  const { email } = request.body;
+
+  const updateUser = new UpdateUserForgotPasswordService();
+
+  const status = await updateUser.execute({
+    email,
   });
 
   return response.json({
