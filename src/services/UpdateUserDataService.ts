@@ -21,7 +21,7 @@ interface Response {
   status: string;
 }
 
-class CreateUserService {
+class UpdateUserDataService {
   public async execute({
     id,
     name,
@@ -60,4 +60,4 @@ class CreateUserService {
   }
 }
 
-export default CreateUserService;
+export default UpdateUserDataService;
