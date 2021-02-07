@@ -4,6 +4,7 @@ import { Router } from 'express';
 import CreateUserService from '../services/CreateUserService';
 import UpdateUserDataService from '../services/UpdateUserDataService';
 import UpdateUserForgotPasswordService from '../services/UpdateUserForgotPasswordService';
+import UpdateUserPasswordService from '../services/UpdateUserPasswordService';
 
 const usersRouter = Router();
 
@@ -41,7 +42,23 @@ usersRouter.put('/userdata', async (request, response) => {
   });
 });
 
-usersRouter.put('/sendpassword', async (request, response) => {
+usersRouter.put('/changepassword', async (request, response) => {
+  const { id, password, newPassword } = request.body;
+
+  const updateUser = new UpdateUserPasswordService();
+
+  const status = await updateUser.execute({
+    id,
+    password,
+    newPassword,
+  });
+
+  return response.json({
+    status,
+  });
+});
+
+usersRouter.put('/sendforgotpassword', async (request, response) => {
   const { email } = request.body;
 
   const updateUser = new UpdateUserForgotPasswordService();
